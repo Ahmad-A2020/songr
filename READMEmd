@@ -1,0 +1,4 @@
+### Lab: 12 - Spring and REST
+in this part we created a database and that access that we access it and store data on it once the post resourse invoked by submitt the form.
+ Also, we render the data in the database using template created for this reason.
+
