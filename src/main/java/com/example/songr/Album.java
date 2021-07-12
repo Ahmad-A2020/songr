@@ -1,11 +1,22 @@
 package com.example.songr;
 
+import javax.persistence.*;
+
+@Entity
+//@Table(name="album")
 public class Album {
-    public String title;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
     private String artist;
     private String imageUrl;
     private int songCount;
     private int length;
+
+    public Album() {
+
+    }
 
     public Album(String title, String artist, String imageUrl, int songCount, int length) {
         this.title = title;
