@@ -3,7 +3,9 @@ package com.example.songr;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.*;
-import org.junit.Assert;
+// wrong // import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 
 @SpringBootTest
