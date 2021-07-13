@@ -21,6 +21,7 @@ public class HomeControler {
     public String showHello(){
         return "Hello";
     }
+
     @GetMapping("/capitalize/{word}")
     @ResponseBody
     public String capitalize( @PathVariable("word") String word){
@@ -55,12 +56,16 @@ public class HomeControler {
     public String fillForm(){
         return ("addAlbum.html");
     }
+
     @PostMapping("/albums")
-    public RedirectView showAlbums(@RequestParam(value="title") String title,
-                             @RequestParam(value="artist") String artist,
-                             @RequestParam(value="imageUrl") String imageUrl,
-                             @RequestParam(value="songCount") int songCount,
-                             @RequestParam(value="length") int length){
+    public RedirectView showAlbums(@RequestParam(value= "title") String title,@RequestParam(value= "artist") String artist,@RequestParam(value= "imageUrl") String imageUrl,  @RequestParam(value="songCount") int songCount,@RequestParam(value="length") int length ){
+//                             @RequestParam(value= "artist") String artist,
+//                             @RequestParam(value= "imageUrl") String imageUrl
+//                             @RequestParam(value="songCount") int songCount,
+//                             @RequestParam(value="length") int length
+//    ){
+        System.out.println("sdsdf"+title);
+//        Album newAlbum= new Album("title","artist","imageUrl",2,3);
         Album newAlbum= new Album(title,artist,imageUrl,songCount,length);
         albumsRepository.save(newAlbum);
         return new RedirectView("/albums");
