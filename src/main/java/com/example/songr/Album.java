@@ -68,4 +68,8 @@ public class Album {
     public void setLength(int length) {
         this.length = length;
     }
+
+    public Long getId() {
+        return id;
+    }
 }

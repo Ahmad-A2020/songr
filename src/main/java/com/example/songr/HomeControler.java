@@ -1,6 +1,8 @@
 package com.example.songr;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -15,6 +17,9 @@ import java.util.Locale;
 public class HomeControler {
     @Autowired
     AlbumsRepository albumsRepository;
+
+    @Autowired
+    SongRepository songRepository;
 
     @RequestMapping("/hello")
     @ResponseBody
@@ -32,6 +37,7 @@ public class HomeControler {
     @GetMapping("/albums")
     public String getAlbums(Model m ){
         m.addAttribute("albums",albumsRepository.findAll());
+//        m.addAttribute("songs",songRepository.)
         return ("albums.html");
     }
 
@@ -58,6 +64,7 @@ public class HomeControler {
     }
 
     @PostMapping("/albums")
+
     public RedirectView showAlbums(@RequestParam(value= "title") String title,@RequestParam(value= "artist") String artist,@RequestParam(value= "imageUrl") String imageUrl,  @RequestParam(value="songCount") int songCount,@RequestParam(value="length") int length ){
 //                             @RequestParam(value= "artist") String artist,
 //                             @RequestParam(value= "imageUrl") String imageUrl
@@ -71,6 +78,14 @@ public class HomeControler {
         return new RedirectView("/albums");
 
     }
+//         Album album =  albumsRepository.findById(id).get();
+//        return new ResponseEntity<>(album, HttpStatus.OK);
+//    }
+
+
+
+
+
 
 
 }
