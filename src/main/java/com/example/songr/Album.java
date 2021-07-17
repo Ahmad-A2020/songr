@@ -72,4 +72,12 @@ public class Album {
     public Long getId() {
         return id;
     }
+
+    public void addSongToAlbum(Song song) {
+        songs.add(song);
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
 }

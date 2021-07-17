@@ -23,7 +23,7 @@ public class SongController {
 
         return ("songs.html");
     }
-    @GetMapping("/addSongs")
+    @GetMapping("/addSong")
     public String addSong (Model m){
         m.addAttribute("albums",albumsRepository.findAll() );
         return "addSong.html";
@@ -33,6 +33,7 @@ public class SongController {
     public RedirectView saveSong(@RequestParam(value="title") String title, @RequestParam(value="length") int length, @RequestParam(value="trackNumber") int trackNumber,@RequestParam(value="id") Long albumId  ){
         Album album = albumsRepository.findById(albumId).get();
         Song newSong= new Song(title,length,trackNumber,album);
+        album.addSongToAlbum(newSong);
         songRepository.save(newSong);
         return new RedirectView("/songs");
 

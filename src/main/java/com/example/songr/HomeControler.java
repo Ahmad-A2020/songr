@@ -33,12 +33,22 @@ public class HomeControler {
 
         return word.toUpperCase(Locale.ROOT);
     }
+    @GetMapping("/")
+    public String homePage(){
+        return ("index.html");
+    }
 
     @GetMapping("/albums")
     public String getAlbums(Model m ){
         m.addAttribute("albums",albumsRepository.findAll());
-//        m.addAttribute("songs",songRepository.)
         return ("albums.html");
+    }
+    @GetMapping("/album/{id}")
+    public String getAlbum(@PathVariable("id") Long id, Model m){
+        Album album= albumsRepository.findById(id).get();
+        m.addAttribute("albums",album);
+        return "albums.html";
+
     }
 
     /**
@@ -66,17 +76,20 @@ public class HomeControler {
     @PostMapping("/albums")
 
     public RedirectView showAlbums(@RequestParam(value= "title") String title,@RequestParam(value= "artist") String artist,@RequestParam(value= "imageUrl") String imageUrl,  @RequestParam(value="songCount") int songCount,@RequestParam(value="length") int length ){
-//                             @RequestParam(value= "artist") String artist,
-//                             @RequestParam(value= "imageUrl") String imageUrl
-//                             @RequestParam(value="songCount") int songCount,
-//                             @RequestParam(value="length") int length
-//    ){
-        System.out.println("sdsdf"+title);
-//        Album newAlbum= new Album("title","artist","imageUrl",2,3);
-        Album newAlbum= new Album(title,artist,imageUrl,songCount,length);
-        albumsRepository.save(newAlbum);
-        return new RedirectView("/albums");
+        try{
+            Album newAlbum= new Album(title,artist,imageUrl,songCount,length);
+            albumsRepository.save(newAlbum);
+            return new RedirectView("/albums");
 
+        }catch(Exception e){
+            return new RedirectView("/error");
+        }
+
+
+    }
+    @GetMapping
+    public  String errorPage(){
+        return("error.html");
     }
 //         Album album =  albumsRepository.findById(id).get();
 //        return new ResponseEntity<>(album, HttpStatus.OK);
