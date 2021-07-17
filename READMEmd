@@ -1,4 +1,25 @@
+### Lab: 11 - Spring for Full-Stack Web Apps
+we created a new application using spring initializer  with Web and Thymeleaf and optionally Devtools dependencies the site includs the following route:
+- Hello Route (/hello): that will return hello once calling the route.
+- capitalize word route ( such as /capitalize/hello):  a route that turns words into UPPER CASE. For instance, I should be able to visit /capitalize/hello and get back an HTML page containing the response HELLO
+- songer routes:
+    - (/albums):  that shows three album instances. To create such feature I created an model album (class) that holds (title, artist, imageUrl, songCount, and length properties), then created a getmap resource to catch the request and use the template albums.html to render the data.
+
 ### Lab: 12 - Spring and REST
 in this part we created a database and that access that we access it and store data on it once the post resourse invoked by submitt the form.
  Also, we render the data in the database using template created for this reason.
 
+##### Feature added on this lab includes:
+- The Album model were updated so that it can be saved in a database.
+- Add new feature to add album (/addAlbum) route on which you will a form then submit it which will  invoke the post request that will create modle and save it in the database.
+
+### Lab: 13 - Related Resources and Integration Testing
+
+in this lab we update the site by adding the following features:
+- created new modle (class song) that has the following attributes: title, a length (in seconds), a trackNumber, and the album on which that song appears.
+- the relation between the two modle (song and album ) were set up (one to many relationship).
+- new routes were added including:
+   - (/songs): this route will present all songs in the database including: title, a length (in seconds), a trackNumber, and the album on which that song appears.
+   - (/album/id): this will present the details of specific album.
+   -(/addSong): this route will give you a form to fill and submit it, on which the postmap will save it on the database as new song.
+   - the old (/albums) route were updated so that it provide the list of the song belong to each album.

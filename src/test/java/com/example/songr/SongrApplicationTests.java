@@ -1,17 +1,29 @@
 package com.example.songr;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+
 import org.springframework.util.*;
-import org.junit.Assert;
+// wrong // import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 
 @SpringBootTest
+@AutoConfigureMockMvc
 class SongrApplicationTests {
-	Album al = new Album("song","NB","https://i.ytimg.com/vi/OzxMjBEazas/maxresdefault.jpg",5,300);
-//
+@Autowired
+
+private MockMvc mockMvc;
 	@Test
-	void getterTitle() {
-		assertEquals("song",al.getTitle());
+	void helloPageTest() throws Exception {
+		mockMvc.perform(get("/hello"))
+				.andExpect(status().isOk());
 	}
 }
